@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><title>Simple Todo</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body>
+<div class="container">
+<h1>Simple Todo</h1>
+<form action="/add" method="post">
+<input type="text" name="task" placeholder="Enter a task" required>
+<button type="submit">Add Task</button>
+</form>
+<ul>
+{% for task in tasks %}
+<li>
+<span class="{% if task[2] %}done{% endif %}">{{ task[1] }}</span>
+{% if not task[2] %}<a href="/complete/{{ task[0] }}">Complete</a>{% endif %}
+<a href="/delete/{{ task[0] }}">Delete</a>
+</li>
+{% endfor %}
+</ul>
+</div>
+</body></html>
